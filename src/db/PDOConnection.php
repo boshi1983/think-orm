@@ -292,7 +292,7 @@ abstract class PDOConnection extends Connection
      */
     protected function getFieldType(string $type): string
     {
-        if (0 === stripos($type, 'set') || 0 === stripos($type, 'enum')) {
+        if (0 === stripos($type, 'set') || 0 === stripos($type, 'enum') || 0 === stripos($type, 'bigint')) {
             $result = 'string';
         } elseif (preg_match('/(double|float|decimal|real|numeric)/is', $type)) {
             $result = 'float';
@@ -324,7 +324,7 @@ abstract class PDOConnection extends Connection
     {
         if (in_array($type, ['integer', 'string', 'float', 'boolean', 'bool', 'int', 'str'])) {
             $bind = $this->bindType[$type];
-        } elseif (str_starts_with($type, 'set') || str_starts_with($type, 'enum')) {
+        } elseif (str_starts_with($type, 'set') || str_starts_with($type, 'enum') || str_starts_with($type, 'bigint')) {
             $bind = self::PARAM_STR;
         } elseif (preg_match('/(double|float|decimal|real|numeric)/is', $type)) {
             $bind = self::PARAM_FLOAT;
