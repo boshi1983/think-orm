@@ -565,7 +565,7 @@ abstract class PDOConnection extends Connection
         $this->attrCase = $params[PDO::ATTR_CASE];
 
         if (!empty($config['break_match_str'])) {
-            $this->breakMatchStr = array_merge($this->breakMatchStr, (array)$config['break_match_str']);
+            $this->breakMatchStr = array_merge($this->breakMatchStr, (array) $config['break_match_str']);
         }
 
         try {
@@ -737,7 +737,7 @@ abstract class PDOConnection extends Connection
         }
 
         if (!isset($master)) {
-            $master = (bool)$query->getOptions('master');
+            $master = (bool) $query->getOptions('master');
         }
 
         $procedure = $query->getOptions('procedure') || in_array(strtolower(substr(trim($sql), 0, 4)), ['call', 'exec']);
@@ -1033,7 +1033,7 @@ abstract class PDOConnection extends Connection
         $options = $query->parseOptions();
 
         if (!empty($options['limit']) && is_numeric($options['limit'])) {
-            $limit = (int)$options['limit'];
+            $limit = (int) $options['limit'];
         } else {
             $limit = 0;
         }
@@ -1088,7 +1088,7 @@ abstract class PDOConnection extends Connection
         $options = $query->parseOptions();
 
         if (!empty($options['limit']) && is_numeric($options['limit'])) {
-            $limit = (int)$options['limit'];
+            $limit = (int) $options['limit'];
         } else {
             $limit = 0;
         }
@@ -1222,7 +1222,7 @@ abstract class PDOConnection extends Connection
             $query->group('');
         }
 
-        $query->setOption('field', (array)$field);
+        $query->setOption('field', (array) $field);
 
         if (!empty($options['cache'])) {
             $cacheItem = $this->parseCache($query, $options['cache'], 'value');
@@ -1282,7 +1282,7 @@ abstract class PDOConnection extends Connection
 
         $result = $this->value($query, $field, 0, $one);
 
-        return $force ? (float)$result : $result;
+        return $force ? (float) $result : $result;
     }
 
     /**
@@ -1320,7 +1320,7 @@ abstract class PDOConnection extends Connection
             $field[] = $key;
         }
 
-        $query->setOption('field', (array)$field);
+        $query->setOption('field', (array) $field);
 
         if (!empty($options['cache'])) {
             // 判断查询缓存
@@ -1404,7 +1404,7 @@ abstract class PDOConnection extends Connection
                 if (self::PARAM_INT == $val[1] && '' === $val[0]) {
                     $val[0] = 0;
                 } elseif (self::PARAM_FLOAT == $val[1]) {
-                    $val[0] = is_string($val[0]) ? (float)$val[0] : $val[0];
+                    $val[0] = is_string($val[0]) ? (float) $val[0] : $val[0];
                     $val[1] = self::PARAM_STR;
                 }
 
@@ -1762,9 +1762,9 @@ abstract class PDOConnection extends Connection
             $type = $this->getFieldsBind($query->getTable())[$pk];
 
             if (self::PARAM_INT == $type) {
-                $insertId = (int)$insertId;
+                $insertId = (int) $insertId;
             } elseif (self::PARAM_FLOAT == $type) {
-                $insertId = (float)$insertId;
+                $insertId = (float) $insertId;
             }
         }
 
